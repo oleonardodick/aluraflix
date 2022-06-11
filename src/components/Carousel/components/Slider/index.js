@@ -13,18 +13,31 @@ const Container = styled.ul`
     bottom: 0;
     margin: auto;
     width: 30px;
-    height: 30px;
+    min-height: 197px;
+    background-color: rgba(15,15,15,0.85);
+    opacity: 0.5;
     transform: initial;
     &:before {
-      font-size: 30px;
+      font-size: 55px;
+      color: ${(props => props.categoryColor)};
+    }
+    &:hover,
+    &focus {
+      opacity: 1;
     }
   }
   
   .slick-prev {
     left: 0;
+    &:before{
+      content: '❮';
+    }
   }
   .slick-next {
-    right: 16px;
+    right: 0px;
+    &:before{
+      content: '❯';
+    }
   }
 `;
 
@@ -39,11 +52,12 @@ export const SliderItem = styled.li`
 `;
 
 
-const Slider = ({ children }) => (
-  <Container>
+const Slider = ({ children, categoryColor }) => (
+  <Container
+    categoryColor= {categoryColor}>
     <SlickSlider {...{
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 300,
       centerMode: false,
       variableWidth: true,
