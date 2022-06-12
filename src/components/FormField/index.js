@@ -80,7 +80,6 @@ function FormField({
       <Label
         htmlFor={fieldId}
       >
-        {label}
         <Input
           as={as}
           id={fieldId}
@@ -89,6 +88,10 @@ function FormField({
           name={name}
           onChange={onChange}
         />
+        <Label.Text>
+          {label}
+          :
+        </Label.Text>
       </Label>
     </FormFieldWrapper>
   );
@@ -97,7 +100,7 @@ function FormField({
 FormField.defaultProps = {
   type: 'text',
   value: '',
-  onChange: () => {},
+  onChange: () => { },
 };
 
 FormField.propTypes = {
