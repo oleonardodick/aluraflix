@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 import CadastroVideo from './pages/cadastro/Video';
 import CadastroCategoria from './pages/cadastro/Categoria';
 
 function Pagina404() {
-  return(
+  return (
     <div>
       Página 404
     </div>
@@ -19,9 +19,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} exact />
-      <Route path='/cadastro/video' element={<CadastroVideo />}/>
-      <Route path='/cadastro/categoria' element={<CadastroCategoria />} />
-      <Route element={<Pagina404 />}/>
+      <Route path="/cadastro/video" element={<CadastroVideo />} />
+      <Route path="/cadastro/categoria" element={<CadastroCategoria />} />
+      <Route element={<Pagina404 />} />
     </Routes>
-  </BrowserRouter>
+  </BrowserRouter>,
 );

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 import SlickSlider from 'react-slick';
 import styled from 'styled-components';
 
@@ -19,7 +20,7 @@ const Container = styled.ul`
     transform: initial;
     &:before {
       font-size: 55px;
-      color: ${(props => props.categoryColor)};
+      color: ${((props) => props.categoryColor)};
     }
     &:hover,
     &focus {
@@ -51,22 +52,33 @@ export const SliderItem = styled.li`
   }
 `;
 
-
-const Slider = ({ children, categoryColor }) => (
-  <Container
-    categoryColor= {categoryColor}>
-    <SlickSlider {...{
-      dots: false,
-      infinite: true,
-      speed: 300,
-      centerMode: false,
-      variableWidth: true,
-      adaptiveHeight: true,
-    }}
+function Slider({ children, categoryColor }) {
+  return (
+    <Container
+      categoryColor={categoryColor}
     >
-      {children}
-    </SlickSlider>
-  </Container>
-);
+      <SlickSlider {...{
+        dots: false,
+        infinite: true,
+        speed: 300,
+        centerMode: false,
+        variableWidth: true,
+        adaptiveHeight: true,
+      }}
+      >
+        {children}
+      </SlickSlider>
+    </Container>
+  );
+}
 
-export default Slider; 
+Slider.defaultProps = {
+  categoryColor: '#FFFFFF',
+};
+
+Slider.propTypes = {
+  children: PropTypes.string.isRequired,
+  categoryColor: PropTypes.string,
+};
+
+export default Slider;

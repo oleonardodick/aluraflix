@@ -1,8 +1,8 @@
-import React from "react";
-import dadosIniciais from "../../data/dados_iniciais.json"
-import BannerMain from "../../components/BannerMain";
-import Carousel from "../../components/Carousel";
-import Template from "../../components/Template";
+import React from 'react';
+import dadosIniciais from '../../data/dados_iniciais.json';
+import BannerMain from '../../components/BannerMain';
+import Carousel from '../../components/Carousel';
+import Template from '../../components/Template';
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"O que é Front-end?"}
+        videoDescription="O que é Front-end?"
       />
 
       <Carousel
@@ -37,7 +37,7 @@ function Home() {
       <Carousel
         category={dadosIniciais.categorias[5]}
       />
-      
+
     </Template>
   );
 }
