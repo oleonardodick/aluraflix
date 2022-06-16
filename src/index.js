@@ -21,7 +21,7 @@ root.render(
       <Route path="/" element={<Home />} exact />
       <Route path="/cadastro/video" element={<CadastroVideo />} />
       <Route path="/cadastro/categoria" element={<CadastroCategoria />} />
-      <Route element={<Pagina404 />} />
+      <Route path="*" element={<Pagina404 />} />
     </Routes>
   </BrowserRouter>,
 );

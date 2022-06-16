@@ -26,7 +26,7 @@ function Template({ children }) {
 }
 
 Template.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf, PropTypes.func]).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Template;

@@ -1,16 +1,22 @@
 {
-    "categorias": [
-        {
-            "id": 1,
-            "nome": "Front End",
-            "descricao": "Categoria front end",
-            "cor": "#6bd1ff"
-        },
-        {
-            "id": 2,
-            "nome": "Back End",
-            "descricao": "Categoria back end",
-            "cor": "#FFFFFF"
-        }
-    ]
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Front End",
+      "descricao": "Categoria front end",
+      "cor": "#6bd1ff"
+    },
+    {
+      "id": 2,
+      "nome": "Back End",
+      "descricao": "Categoria back end",
+      "cor": "#FFFFFF"
+    },
+    {
+      "id": 3,
+      "nome": "Python",
+      "descricao": "Categoria programação em Python",
+      "cor": "#E5FFCC"
+    }
+  ]
 }

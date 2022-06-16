@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
+import Table from '../../../components/Table';
 
 function CadastroCategoria() {
   const valoresIniciaisCategoria = {
@@ -32,6 +33,21 @@ function CadastroCategoria() {
     );
   };
 
+  async function postCategory(category) {
+    const URL = 'http://localhost:8080/categorias';
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(category),
+    };
+    const response = await fetch(URL, requestOptions);
+    const data = await response.json();
+    setCategorias([
+      ...categorias,
+      data,
+    ]);
+  }
+
   useEffect(() => {
     const URL = 'http://localhost:8080/categorias';
     fetch(URL)
@@ -53,11 +69,7 @@ function CadastroCategoria() {
 
       <form onSubmit={(infos) => {
         infos.preventDefault();
-        categoria.id = categorias.length + 1;
-        setCategorias([
-          ...categorias,
-          categoria,
-        ]);
+        postCategory(categoria);
         setCategoria(valoresIniciaisCategoria);
       }}
       >
@@ -89,7 +101,7 @@ function CadastroCategoria() {
         </Button>
       </form>
 
-      <table>
+      {/* <table>
         <tr>
           <th>ID</th>
           <th>Nome</th>
@@ -104,7 +116,14 @@ function CadastroCategoria() {
             <td>{item.cor}</td>
           </tr>
         ))}
-      </table>
+      </table> */}
+
+      <Table
+        cabecalho={['ID', 'Nome', 'Descrição', 'Cor']}
+        elementos={categorias}
+        hasEdit
+        hasDelete
+      />
 
       <Link to="/">
         Voltar pra home
