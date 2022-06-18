@@ -3,35 +3,19 @@ import { Link } from 'react-router-dom';
 import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
-import Table from '../../../components/Table';
+// import Table from '../../../components/Table';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
-  const valoresIniciaisCategoria = {
+  const valoresIniciais = {
     id: 0,
     nome: '',
     descricao: '',
     cor: '#ffffff',
   };
 
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
   const [categorias, setCategorias] = useState([]);
-
-  const [categoria, setCategoria] = useState(valoresIniciaisCategoria);
-
-  function handleSetCategoria(chave, valor) {
-    // chave = nome, descricao, cor
-    setCategoria({
-      ...categoria,
-      [chave]: valor, // nome:'valor'
-    });
-  }
-
-  const handleChange = (info) => {
-    const { name, value } = info.target;
-    handleSetCategoria(
-      name,
-      value,
-    );
-  };
 
   async function postCategory(category) {
     const URL = 'http://localhost:8080/categorias';
@@ -64,26 +48,26 @@ function CadastroCategoria() {
       <h1>
         Cadastro de categoria:
         {' '}
-        {categoria.nome}
+        {values.nome}
       </h1>
 
       <form onSubmit={(infos) => {
         infos.preventDefault();
-        postCategory(categoria);
-        setCategoria(valoresIniciaisCategoria);
+        postCategory(values);
+        clearForm();
       }}
       >
         <FormField
           label="Nome da Categoria"
           type="text"
-          value={categoria.nome}
+          value={values.nome}
           name="nome"
           onChange={handleChange}
         />
         <FormField
           label="Descrição"
           type="textarea"
-          value={categoria.descricao}
+          value={values.descricao}
           name="descricao"
           onChange={handleChange}
         />
@@ -91,7 +75,7 @@ function CadastroCategoria() {
         <FormField
           label="Cor"
           type="color"
-          value={categoria.cor}
+          value={values.cor}
           name="cor"
           onChange={handleChange}
         />
@@ -101,29 +85,32 @@ function CadastroCategoria() {
         </Button>
       </form>
 
-      {/* <table>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Cor</th>
-        </tr>
-        {categorias.map((item) => (
+      <table>
+        <thead>
           <tr>
-            <td>{item.id}</td>
-            <td>{item.nome}</td>
-            <td>{item.descricao}</td>
-            <td>{item.cor}</td>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Cor</th>
           </tr>
-        ))}
-      </table> */}
+        </thead>
+        <tbody>
+          {categorias.map((item) => (
+            <tr key={`item${item.id}`}>
+              <td>{item.id}</td>
+              <td>{item.titulo}</td>
+              <td>{item.cor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <Table
+      {/* <Table
         cabecalho={['ID', 'Nome', 'Descrição', 'Cor']}
         elementos={categorias}
         hasEdit
         hasDelete
-      />
+      /> */}
 
       <Link to="/">
         Voltar pra home
